@@ -77,7 +77,13 @@ def load_user(id):
 ###
 # The functions below should be applicable to all Flask apps.
 ###
-
+@app.route('/logout')
+@login_required
+def logout():
+    
+    logout_user()
+    flash('You logged out.', 'danger')
+    return redirect(url_for('home'))
 
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
